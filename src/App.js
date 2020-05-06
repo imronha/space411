@@ -23,8 +23,7 @@ function App() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Header />
+      <Grid container spacing={2}>
         <Dashboard />
       </Grid>
     </div>

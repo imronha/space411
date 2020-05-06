@@ -1,38 +1,52 @@
-// import React from "react";
-// // nodejs library that concatenates classes
-// import classNames from "classnames";
-// // nodejs library to set properties for components
-// import PropTypes from "prop-types";
-// // @material-ui/core components
-// import { makeStyles } from "@material-ui/core/styles";
-// // @material-ui/icons
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
-// // core components
-// import styles from "./cardStyle.js";
+const useStyles = makeStyles({
+  root: {
+    maxWidth: "100%",
+  },
+  media: {
+    height: 140,
+    width: "100%",
+  },
+});
 
-// const useStyles = makeStyles(styles);
+export default function MediaCard() {
+  const classes = useStyles();
 
-// export default function Card(props) {
-//   const classes = useStyles();
-//   const { className, children, plain, profile, chart, ...rest } = props;
-//   const cardClasses = classNames({
-//     [classes.card]: true,
-//     [classes.cardPlain]: plain,
-//     [classes.cardProfile]: profile,
-//     [classes.cardChart]: chart,
-//     [className]: className !== undefined,
-//   });
-//   return (
-//     <div className={cardClasses} {...rest}>
-//       {children}
-//     </div>
-//   );
-// }
-
-// Card.propTypes = {
-//   className: PropTypes.string,
-//   plain: PropTypes.bool,
-//   profile: PropTypes.bool,
-//   chart: PropTypes.bool,
-//   children: PropTypes.node,
-// };
+  return (
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image="/static/images/cards/contemplative-reptile.jpg"
+          title="Contemplative Reptile"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            Lizard
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button>
+      </CardActions>
+    </Card>
+  );
+}
