@@ -17,13 +17,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Dashboard = () => {
+const Dashboard = ({ data: { date, explanation, hdurl, title } }) => {
+  // console.log(date);
+  // console.log(data);
   const classes = useStyles();
 
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <Header />
+        <Header data={hdurl} />
       </Grid>
       <Grid item xs={12} sm={6}>
         <MediaCard />

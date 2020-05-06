@@ -1,33 +1,31 @@
-// import React from "react";
-// import "./App.css";
-// import { Grid, Typography } from "@material-ui/core";
-
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 import { Dashboard, Sidebar, Header } from "./components";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-}));
+import { fetchApod } from "./api/nasa.js";
 
-function App() {
-  const classes = useStyles();
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={2}>
-        <Dashboard />
-      </Grid>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    apodData: {},
+  };
+
+  async componentDidMount() {
+    const fetchedApod = await fetchApod();
+    // console.log(fetchedApod.data);
+    this.setState({ apodData: fetchedApod.data });
+  }
+  render() {
+    const { apodData } = this.state;
+
+    return (
+      <div className="">
+        <Grid container spacing={2}>
+          <Dashboard data={apodData} />
+        </Grid>
+      </div>
+    );
+  }
 }
 
 export default App;
